@@ -17,6 +17,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         int value[] = new int[2];
+        int max = Integer.MIN_VALUE;
 
         //.out.println("->->"+(josephus(41,3)+1));
         //System.out.println("->->"+(josephus3(41,3)));
