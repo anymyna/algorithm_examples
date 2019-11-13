@@ -19,9 +19,65 @@ public class MainActivity extends AppCompatActivity {
         int value[] = new int[2];
 
         //.out.println("->->"+(josephus(41,3)+1));
-        System.out.println("->->"+(josephus3(41,3)));
+        //System.out.println("->->"+(josephus3(41,3)));
 
-        //josephus1();
+        convert("PAYPALISHIRING",3);
+
+
+
+    }
+
+    //6. Z 字形变换          convert("PAYPALISHIRING",3);
+    public String convert(String s, int numRows) {
+
+        String val="";
+        if(numRows == 1)
+        {
+            return s;
+        }
+
+        int length = s.length();
+        int arrNumRows = ((length /(2*numRows-2 ))+1)*(numRows-1);
+        char arr[][] = new char[numRows][arrNumRows];
+
+        for(int i=0;i<numRows;i++)
+        {
+            for(int j=0;j<arrNumRows;j++)
+            {
+                arr[i][j] = 0;
+            }
+        }
+
+        int row;
+        for(int i=0;i<s.length();i++)
+        {
+            int j = (i/(2*numRows-2));
+            row = (numRows-1)*j;
+
+            int t = i%(2*numRows-2);
+
+            if(t<numRows)
+            {
+                arr[t][row]=s.charAt(i);
+            }
+            else
+            {
+                arr[2*numRows-2-t][row+t-numRows+1]=s.charAt(i);
+            }
+        }
+
+        for(int i=0;i<numRows;i++)
+        {
+            for(int j=0;j<arrNumRows;j++)
+            {
+                if(arr[i][j] != 0)
+                {
+                    val+=arr[i][j];
+                }
+            }
+        }
+
+        return val;
     }
 
     //循环链表解法  约瑟夫环问题
