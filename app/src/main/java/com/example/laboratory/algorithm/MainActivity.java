@@ -28,6 +28,35 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+//121. 买卖股票的最佳时机
+    public int maxProfit(int[] prices) {
+        if(prices.length < 1)
+        {
+            return 0;
+        }
+        int buy[] = new int[prices.length];
+        buy[0] = prices[0];
+        int max = 0;
+        for(int i=1;i<prices.length;i++)
+        {
+            if(prices[i] < buy[i-1])
+            {
+                buy[i] = prices[i];
+            }
+            else
+            {
+                buy[i] = buy[i-1];
+            }
+            int tempProfit = prices[i] - buy[i-1];
+            if(tempProfit > max)
+            {
+                max = tempProfit;
+            }
+        }
+        return max;
+
+    }
+
 //70. 爬楼梯
     public int climbStairs(int n) {
         int arr[] = new int[n+1];
