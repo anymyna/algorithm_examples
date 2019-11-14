@@ -26,19 +26,61 @@ public class MainActivity extends AppCompatActivity {
 
         convert("PAYPALISHIRING",3);
 
-//        char s = 'c';
+        char s = 'c';
 //        s.
 //        Character.isLowerCase(s);
 //        Character.isDigit()
 //        Character.isAlphabetic()
+//        Character.toLowerCase();
+//        Character.toUpperCase()
 //
 //                String t= "";
 //        t.toLowerCase();
+//        t.length();
+//        t = t.substring(0,t.length()-1);
 
 
     }
 
+    //784. 字母大小写全排列
+    public List<String> letterCasePermutation(String S) {
+        String temp = "";
+        S = S.toLowerCase();
+        List<String> list = new ArrayList<String>();
+        backTrack(list,S,temp);
+        return list;
+    }
 
+    private void backTrack(List<String>list,String S,String temp)
+    {
+        if(temp.length() == S.length())
+        {
+            list.add(temp);
+        }
+        else
+        {
+            if(temp.length() <  S.length())
+            {
+                if(Character.isDigit(S.charAt(temp.length())))
+                {
+                    temp += S.charAt(temp.length());
+                    backTrack(list,S,temp);
+                    temp = temp.substring(0,temp.length()-1);
+                }
+                else
+                {
+                    temp +=  Character.toLowerCase(S.charAt(temp.length()));
+                    backTrack(list,S,temp);
+                    temp = temp.substring(0,temp.length()-1);
+
+                    temp +=  Character.toUpperCase(S.charAt(temp.length()));
+                    backTrack(list,S,temp);
+                    temp = temp.substring(0,temp.length()-1);
+                }
+
+            }
+        }
+    }
 
     //46. 全排列
     public List<List<Integer>> permute(int[] nums) {
