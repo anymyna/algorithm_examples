@@ -5,7 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -24,10 +26,56 @@ public class MainActivity extends AppCompatActivity {
 
         convert("PAYPALISHIRING",3);
 
+//        char s = 'c';
+//        s.
+//        Character.isLowerCase(s);
+//        Character.isDigit()
+//        Character.isAlphabetic()
+//
+//                String t= "";
+//        t.toLowerCase();
 
 
     }
-    //c
+
+
+
+    //46. 全排列
+    public List<List<Integer>> permute(int[] nums) {
+
+        List<Integer> temp = new ArrayList<Integer>();
+        List<List<Integer>> list = new ArrayList<List<Integer>>();
+        backTrace(list,temp,nums);
+        return list;
+    }
+
+    private void backTrace(List<List<Integer>> list,List<Integer> temp,int[] nums)
+    {
+        if(temp.size() == nums.length)
+        {
+            list.add(new ArrayList<>(temp));
+        }
+        else
+        {
+            for(int i=0;i<nums.length;i++)
+            {
+                if(temp.contains(nums[i]))
+                {
+                    continue;
+                }
+                else
+                {
+                    temp.add(nums[i]);
+                    backTrace(list,temp,nums);
+                    temp.remove(temp.size()-1);
+                }
+
+            }
+        }
+
+    }
+
+    //198. 打家劫舍
     public int rob(int[] nums) {
         if(nums.length < 1)
         {
