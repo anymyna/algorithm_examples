@@ -3,6 +3,7 @@ package com.example.laboratory.algorithm;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 
 import java.util.ArrayList;
@@ -19,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         int value[] = new int[2];
+        //value.length
         int max = Integer.MIN_VALUE;
 
         //.out.println("->->"+(josephus(41,3)+1));
@@ -27,7 +29,8 @@ public class MainActivity extends AppCompatActivity {
         convert("PAYPALISHIRING",3);
 
         char s = 'c';
-//        s.
+
+//        TextUtils.isEmpty()
 //        Character.isLowerCase(s);
 //        Character.isDigit()
 //        Character.isAlphabetic()
@@ -41,6 +44,44 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
+    //242. 有效的字母异位词
+    public boolean isAnagram(String s, String t) {
+
+
+        if(s.length() != t.length())
+        {
+            return false;
+        }
+        int arrS[] = new int[26];
+        int arrT[] = new int[26];
+
+
+        for (int i = 0;i<s.length() ;i++)
+        {
+            int index = s.charAt(i)-'a';
+            arrS[index]++;
+        }
+
+        for(int j = 0;j<t.length();j++)
+        {
+            int index = t.charAt(j)-'a';
+            arrT[index] ++;
+        }
+
+
+        for(int i=0;i<arrS.length;i++)
+        {
+            if(arrS[i] != arrT[i])
+            {
+                return false;
+            }
+        }
+
+        return true;
+
+    }
+
 
     //784. 字母大小写全排列
     public List<String> letterCasePermutation(String S) {
