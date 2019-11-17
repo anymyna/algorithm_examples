@@ -42,6 +42,67 @@ public class MainActivity extends AppCompatActivity {
 //        t.length();
 //        t = t.substring(0,t.length()-1);
 
+        int[] nums1 = new int[3];
+        nums1[0] = 4;
+        nums1[1] =9;
+        nums1[2] = 5;
+
+        int[] nums2 = new int[5];
+        nums2[0] = 9;
+        nums2[1] =4;
+        nums2[2] = 9;
+        nums2[3] = 8;
+        nums2[4] = 4;
+
+
+        int arr [] = intersection(nums1,nums2);
+        for(int i= 0 ;i<arr.length;i++)
+        {
+            Log.e(Tag,""+arr[i]);
+        }
+
+
+
+
+    }
+
+    //49. 两个数组的交集
+    public int[] intersection(int[] nums1, int[] nums2) {
+        int len1 = nums1.length;
+        int len2 = nums2.length;
+        int size = len1 > len2 ? len1 : len2;
+        int valSize = 0;
+        int value[] = new int[size];
+        for(int i=0;i<len1;i++)
+        {
+            for(int j = 0;j< len2;j++)
+            {
+                if(nums1[i]==nums2[j])
+                {
+                    boolean find = false;
+                    for(int k = 0;k<valSize;k++)
+                    {
+                        if(value[k]==nums1[i])
+                        {
+                            find = true;
+                        }
+                    }
+
+                    if(!find)
+                    {
+                        value[valSize] = nums1[i];
+                        valSize++;
+                    }
+                    break;
+                }
+            }
+        }
+        int res[] = new int[valSize];
+        for(int i=0;i<valSize;i++)
+        {
+            res[i] = value[i];
+        }
+        return res;
 
     }
 
