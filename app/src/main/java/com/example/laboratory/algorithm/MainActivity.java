@@ -176,6 +176,54 @@ public class MainActivity extends AppCompatActivity {
         return false;
     }
 
+    // 77. 组合  递归
+    public List<List<Integer>> combine(int n, int k) {
+
+        List<Integer> list = new  ArrayList<Integer>();
+        List<List<Integer>> result = new ArrayList<List<Integer>> ();
+        if(n < 1 || n < k)
+        {
+            return result;
+        }
+        if(k < 1)
+        {
+            return result;
+        }
+        if( k == 1)
+        {
+            for (int i=1 ;i< n+1;i++)
+            {
+                list = new  ArrayList<Integer>();
+                list.add(i);
+                result.add(list);
+            }
+            return result;
+        }
+        else
+        {
+            List<List<Integer>> temp = combine(n-1,k-1);
+            for(int j=0;j<temp.size();j++)
+            {
+                List<Integer> listTemp = temp.get(j);
+                listTemp.add(n);
+            }
+
+            if(temp.size()>0)
+            {
+                result.addAll(temp);
+            }
+
+            temp = combine(n-1,k);
+            if(temp.size()>0)
+            {
+                result.addAll(temp);
+            }
+            return result;
+        }
+    }
+
+
+
     //1021. 删除最外层的括号
     public String removeOuterParentheses(String S) {
         Stack stack = new Stack();
