@@ -9,10 +9,11 @@ import android.util.Log;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Stack;
 
 public class MainActivity extends AppCompatActivity {
 
-    private String Tag = "duck";
+    private String TAG = "duck";
 
 
     @Override
@@ -30,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
 
         char s = 'c';
 
+
 //        TextUtils.isEmpty()
 //        Character.isLowerCase(s);
 //        Character.isDigit()
@@ -37,34 +39,180 @@ public class MainActivity extends AppCompatActivity {
 //        Character.toLowerCase();
 //        Character.toUpperCase()
 //
-//                String t= "";
-//        t.toLowerCase();
-//        t.length();
-//        t = t.substring(0,t.length()-1);
+                String t= "";
+        t.toLowerCase();
+        t.length();
+        t = t.substring(0,t.length()-1);
+//        t.equals()
+        //49. 两个数组的交集
+//        int[] nums1 = new int[3];
+//        nums1[0] = 4;
+//        nums1[1] =9;
+//        nums1[2] = 5;
+//        int[] nums2 = new int[5];
+//        nums2[0] = 9;
+//        nums2[1] =4;
+//        nums2[2] = 9;
+//        nums2[3] = 8;
+//        nums2[4] = 4;
+//        int arr [] = intersection(nums1,nums2);
+//        for(int i= 0 ;i<arr.length;i++)
+//        {
+//            Log.e(Tag,""+arr[i]);
+//        }
 
-        int[] nums1 = new int[3];
-        nums1[0] = 4;
-        nums1[1] =9;
-        nums1[2] = 5;
-
-        int[] nums2 = new int[5];
-        nums2[0] = 9;
-        nums2[1] =4;
-        nums2[2] = 9;
-        nums2[3] = 8;
-        nums2[4] = 4;
+        int arr [][] = {{1,4,7,11,15},{2,5,8,12,19},{3,6,9,16,22},{10,13,14,17,24},{18,21,23,26,30}};//20
+        //int arr [][] = {{1,2,3,4,5},{6,7,8,9,10},{11,12,13,14,15},{16,17,18,19,20},{21,22,23,24,25}};//15
+//        int arr [][] = {{1,4},{2,5}};//2
+        Log.e(TAG," "+searchMatrix(arr,20));
 
 
-        int arr [] = intersection(nums1,nums2);
-        for(int i= 0 ;i<arr.length;i++)
+    }
+    public boolean searchMatrix(int[][] matrix, int target) {
+
+        if(matrix.length == 0)
         {
-            Log.e(Tag,""+arr[i]);
+            return false;
+        }
+        if(matrix[0].length == 0)
+        {
+            return false;
         }
 
 
 
+        return searchMatrix(matrix,target,matrix.length-1,matrix[0].length-1);
+    }
+
+
+    private boolean searchMatrix(int[][] matrix, int target,int i,int j){
+
+        if(matrix[i][j] < target)
+        {
+            return false;
+        }
+
+        if(matrix[0][0] > target)
+        {
+            return false;
+        }
+
+        if(i == 0)
+        {
+            for(int l=0;l<matrix[0].length;l++)
+            {
+                if(matrix[0][l] == target)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        if(j == 0)
+        {
+            for(int l=0;l<matrix.length;l++)
+            {
+                if(matrix[l][0] == target)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+
+        if(j < 2 || i < 2)
+        {
+            for(int l=0;l<i+1;l++)
+            {
+                for(int m=0;m<j+1;m++)
+                {
+                    if(matrix[l][m] == target)
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+
+
+        int row = 0;
+
+        int k = 0;
+        while (matrix[i][j] > target && i - row > 1)
+        {
+            k = i;
+            int base = (i - row) / 2;
+            i = row + base;
+
+            if(matrix[i][j] < target && k - row > 1)
+            {
+                row = i;
+                i = k;
+            }
+            else if(matrix[i][j] == target)
+            {
+                return true;
+            }
+
+            if(matrix[row][j] < target && matrix[row+1][j]>target)
+            {
+                break;
+            }
+
+        }
+
+        for(int l=0;l<matrix[0].length-1;l++)
+        {
+            if(matrix[row+1][l] == target)
+            {
+                return true;
+            }
+        }
+
+
+        return false;
+    }
+
+    //1021. 删除最外层的括号
+    public String removeOuterParentheses(String S) {
+        Stack stack = new Stack();
+        int start = 0;
+        for(int i=0;i<S.length();i++)
+        {
+            char ch = S.charAt(i);
+            if(stack.empty())
+            {
+                start = i;
+                stack.push(ch);
+            }
+            else if('(' - ch == 0)
+            {
+                stack.push(ch);
+            }
+            else if(')' - ch == 0)
+            {
+                stack.pop();
+                if(stack.empty())
+                {
+                    String begin = S.substring(0,start);
+                    String middle = S.substring(start+1,i);
+                    String end = S.substring(i+1,S.length());
+                    S = begin + middle + end;
+                    if(S.length() > 1)
+                    {
+                        i = i - 2;
+                    }
+                }
+            }
+        }
+
+        return S;
 
     }
+
 
     //49. 两个数组的交集
     public int[] intersection(int[] nums1, int[] nums2) {
