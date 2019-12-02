@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        int value[] = new int[2];
+        //int value·[] = new int[2];
         //value.length
         int max = Integer.MIN_VALUE;
 
@@ -174,6 +174,30 @@ public class MainActivity extends AppCompatActivity {
 
 
         return false;
+    }
+
+
+    //189. 旋转数组
+    public void rotate(int[] nums, int k) {
+
+        for(int i=0;i<k;i++)
+        {
+            rotate(nums);
+        }
+    }
+
+    private void rotate(int[] nums)
+    {
+        if(nums.length == 0 || nums.length == 1)
+        {
+            return;
+        }
+        int temp = nums[nums.length-1];
+        for(int i = nums.length-1;i>0;i--)
+        {
+            nums[i] = nums[i-1];
+        }
+        nums[0] = temp;
     }
 
     // 77. 组合  递归
