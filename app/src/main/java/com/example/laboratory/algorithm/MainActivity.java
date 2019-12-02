@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Stack;
+import java.util.Vector;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -39,10 +40,16 @@ public class MainActivity extends AppCompatActivity {
 //        Character.toLowerCase();
 //        Character.toUpperCase()
 //
+
+
                 String t= "";
         t.toLowerCase();
         t.length();
         t = t.substring(0,t.length()-1);
+//        t.contains()
+
+
+
 //        t.equals()
         //49. 两个数组的交集
 //        int[] nums1 = new int[3];
@@ -64,10 +71,44 @@ public class MainActivity extends AppCompatActivity {
         int arr [][] = {{1,4,7,11,15},{2,5,8,12,19},{3,6,9,16,22},{10,13,14,17,24},{18,21,23,26,30}};//20
         //int arr [][] = {{1,2,3,4,5},{6,7,8,9,10},{11,12,13,14,15},{16,17,18,19,20},{21,22,23,24,25}};//15
 //        int arr [][] = {{1,4},{2,5}};//2
-        Log.e(TAG," "+searchMatrix(arr,20));
+        //Log.e(TAG," "+searchMatrix(arr,20));
 
+
+        Vector<String> vector = new Vector<>();
+        vector.add("a");
+        vector.add("b");
+        vector.add("c");
+        vector.add("f");
+        vector.add("e");
+        vector.add("f");
+        vector.add("g");
+        vector.add("h");
+        Log.e(TAG," vector before "+vector.toString());
+         reverse(vector,3);
+        Log.e(TAG," vector after"+vector.toString());
 
     }
+
+    //编程珠玑：向量旋转
+    private  void reverse( Vector<String> vector ,int position)
+    {
+        reverse(vector,0,position-1);
+        reverse(vector,position,vector.size()-1);
+        reverse(vector,0,vector.size()-1);
+    }
+
+    private  void reverse( Vector<String> vector,int start ,int end)
+    {
+        while(start < end)
+        {
+            String temp = vector.elementAt(start);
+            vector.set(start,vector.elementAt(end));
+            vector.set(end,temp);
+            start++;
+            end--;
+        }
+    }
+
     public boolean searchMatrix(int[][] matrix, int target) {
 
         if(matrix.length == 0)
