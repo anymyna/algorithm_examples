@@ -83,10 +83,85 @@ public class MainActivity extends AppCompatActivity {
         vector.add("f");
         vector.add("g");
         vector.add("h");
-        Log.e(TAG," vector before "+vector.toString());
+        //Log.e(TAG," vector before "+vector.toString());
          reverse(vector,3);
-        Log.e(TAG," vector after"+vector.toString());
+        Log.e(TAG," vector after"+rotatedDigits(10));
 
+    }
+
+    //788. 旋转数字
+    public int rotatedDigits(int N) {
+        int count = 0;
+        for(int i=1;i<N;i++)
+        {
+            if(isGoodNumber(i))
+            {
+                count++;
+            }
+        }
+        return count;
+    }
+
+
+
+    boolean isGoodNumber(int num)
+    {
+        int base = num;
+        int res = 0;
+        int key = 1;
+        while(num > 0)
+        {
+            int temp = num%10;
+            int val = getReverse(temp) ;
+
+            if( val == -1)
+            {
+                return false;
+            }
+            res += key* val;
+            key = key *10;
+            num = num/10;
+        }
+
+        if(res == base)
+        {
+            return false;
+        }
+        return true;
+    }
+
+
+    int getReverse(int num)
+    {
+        if(num == 0)
+        {
+            return 0;
+        }
+        if(num == 1)
+        {
+            return 1;
+        }
+        if(num == 2)
+        {
+            return 5;
+        }
+        if(num == 5)
+        {
+            return 2;
+        }
+        if(num == 6)
+        {
+            return 9;
+        }
+        if(num == 9)
+        {
+            return 6;
+        }
+        if(num == 8)
+        {
+            return 8;
+        }
+        return -1;
     }
 
     //796. 旋转字符串
