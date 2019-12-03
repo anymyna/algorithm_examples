@@ -42,10 +42,10 @@ public class MainActivity extends AppCompatActivity {
 //
 
 
-                String t= "";
-        t.toLowerCase();
-        t.length();
-        t = t.substring(0,t.length()-1);
+//                String t= "";
+//        t.toLowerCase();
+//        t.length();
+//        t = t.substring(0,t.length()-1);
 //        t.contains()
 
 
@@ -88,6 +88,46 @@ public class MainActivity extends AppCompatActivity {
         Log.e(TAG," vector after"+vector.toString());
 
     }
+
+    //796. 旋转字符串
+    public boolean rotateString(String A, String B) {
+
+
+        if(A.length() != B.length())
+        {
+            return false;
+        }
+
+        if(A.length() == B.length() && B.length()  == 0)
+        {
+            return true;
+        }
+
+        for(int i=0;i<A.length();i++)
+        {
+            A = rotate(A);
+            //if(TextUtils.equals(A,B))
+            if(A.contains(B))
+            {
+                return true;
+            }
+        }
+
+        return false;
+
+    }
+
+    private String  rotate(String A)
+    {
+        if(A.length() < 2)
+        {
+            return A;
+        }
+        char temp = A.charAt(0);
+        return  A.substring(1)+temp;
+    }
+
+
 
     //编程珠玑：向量旋转
     private  void reverse( Vector<String> vector ,int position)
