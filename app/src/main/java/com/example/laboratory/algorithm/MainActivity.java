@@ -7,6 +7,7 @@ import android.text.TextUtils;
 import android.util.Log;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Stack;
@@ -87,10 +88,129 @@ public class MainActivity extends AppCompatActivity {
 //        //Log.e(TAG," vector before "+vector.toString());
 //         reverse(vector,3);
 //        Log.e(TAG," vector after"+rotatedDigits(10));
+        HashSet<String> set = new HashSet<String>();
 
-
+//t.toLowerCase()
         Log.e(TAG," toLowerCase"+toLowerCase("Hello"));
 
+    }
+//804. 唯一摩尔斯密码词
+    public int uniqueMorseRepresentations(String[] words) {
+
+        if(words.length < 1)
+        {
+            return 0;
+        }
+
+        HashSet<String> set = new HashSet<String>();
+
+        for(int i=0;i<words.length;i++)
+        {
+
+            String v = words[i].toLowerCase();
+            if(v.length()<1)
+            {
+                continue;
+            }
+            String temp="";
+            for(int j=0;j<v.length();j++)
+            {
+                temp += getValue(v.charAt(j));
+            }
+            set.add(temp);
+        }
+        return set.size();
+
+    }
+
+
+
+
+    public String getValue(char ch)
+    {
+        String val="";
+        switch(ch)
+        {
+            case 'a':
+                val = ".-";
+                break;
+            case 'b':
+                val = "-...";
+                break;
+            case 'c':
+                val = "-.-.";
+                break;
+            case 'd':
+                val = "-..";
+                break;
+            case 'e':
+                val = ".";//e
+                break;
+            case 'f':
+                val = "..-.";
+                break;
+            case 'g':
+                val = "--.";
+                break;
+            case 'h':
+                val = "....";
+                break;
+            case 'i':
+                val = "..";
+                break;
+            case 'j':
+                val = ".---";
+                break;
+            case 'k':
+                val = "-.-";
+                break;
+            case 'l':
+                val = ".-..";
+                break;
+            case 'm':
+                val ="--";
+                break;
+            case 'n':
+                val ="-.";
+                break;
+            case 'o':
+                val ="---";
+                break;
+            case 'p':
+                val =".--.";
+                break;
+            case 'q':
+                val ="--.-";
+                break;
+            case 'r':
+                val =".-.";
+                break;
+            case 's':
+                val = "...";
+                break;
+            case 't':
+                val ="-";
+                break;
+            case 'u':
+                val = "..-";
+                break;
+            case 'v':
+                val ="...-";
+                break;
+            case 'w':
+                val =".--";
+                break;
+            case 'x':
+                val = "-..-";
+                break;
+            case 'y':
+                val ="-.--";
+                break;
+            case 'z':
+                val = "--..";
+                break;
+        }
+        return val;
     }
 
     //709. 转换成小写字母
