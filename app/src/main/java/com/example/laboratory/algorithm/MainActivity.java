@@ -42,7 +42,8 @@ public class MainActivity extends AppCompatActivity {
 //
 
 
-//                String t= "";
+                String t= "";
+        //t.replace()
 //        t.toLowerCase();
 //        t.length();
 //        t = t.substring(0,t.length()-1);
@@ -74,25 +75,48 @@ public class MainActivity extends AppCompatActivity {
         //Log.e(TAG," "+searchMatrix(arr,20));
 
 
-        Vector<String> vector = new Vector<>();
-        vector.add("a");
-        vector.add("b");
-        vector.add("c");
-        vector.add("f");
-        vector.add("e");
-        vector.add("f");
-        vector.add("g");
-        vector.add("h");
-        //Log.e(TAG," vector before "+vector.toString());
-         reverse(vector,3);
-        Log.e(TAG," vector after"+rotatedDigits(10));
+//        Vector<String> vector = new Vector<>();
+//        vector.add("a");
+//        vector.add("b");
+//        vector.add("c");
+//        vector.add("f");
+//        vector.add("e");
+//        vector.add("f");
+//        vector.add("g");
+//        vector.add("h");
+//        //Log.e(TAG," vector before "+vector.toString());
+//         reverse(vector,3);
+//        Log.e(TAG," vector after"+rotatedDigits(10));
 
+
+        Log.e(TAG," toLowerCase"+toLowerCase("Hello"));
+
+    }
+
+    //709. 转换成小写字母
+    public String toLowerCase(String str) {
+        if(str.length()<0)
+        {
+            return str;
+        }
+        int temp = 'a'-'A';// 97 65
+        for(int i =0;i<str.length();i++)
+        {
+            char ch = str.charAt(i);
+            if(ch >= 'A' && ch <='Z')
+            {
+                char ch2 = (char)(ch + temp) ;
+                //str = str.substring(0,i)+ch+str.substring(i);
+                str = str.replace(ch,ch2);
+            }
+        }
+        return str;
     }
 
     //788. 旋转数字
     public int rotatedDigits(int N) {
         int count = 0;
-        for(int i=1;i<N;i++)
+        for(int i=1;i<=N;i++)
         {
             if(isGoodNumber(i))
             {
