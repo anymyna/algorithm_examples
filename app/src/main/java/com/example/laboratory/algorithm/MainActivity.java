@@ -94,6 +94,39 @@ public class MainActivity extends AppCompatActivity {
         Log.e(TAG," toLowerCase"+toLowerCase("Hello"));
 
     }
+
+//14. 最长公共前缀
+    public String longestCommonPrefix(String[] strs) {
+        if(strs.length == 0)
+        {
+            return "";
+        }
+        if(strs.length == 1)
+        {
+            return strs[0];
+        }
+        String first = strs[0];
+        for(int i=first.length();i>0;i--)
+        {
+            String prefix = first.substring(0,i);
+            boolean find = true;
+            for(int j=1;j<strs.length;j++)
+            {
+                if(strs[j].length() < i || !strs[j].substring(0,i).equals(prefix))
+                {
+                    find = false;
+                    break;
+                }
+            }
+            if(find)
+            {
+                return prefix;
+            }
+
+        }
+        return "";
+    }
+
 //804. 唯一摩尔斯密码词
     public int uniqueMorseRepresentations(String[] words) {
 
