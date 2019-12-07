@@ -95,6 +95,60 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+//20. 有效的括号
+    public boolean isValid(String s) {
+        if(s.length() < 1)
+        {
+            return true;
+        }
+        Stack<String> stack = new Stack<String>();
+        for(int i=0;i<s.length();i++)
+        {
+            String index = ""+s.charAt(i);
+            if(index.equals("}") ||index.equals(")") || index.equals("]") )
+            {
+                if(stack.size() < 1)
+                {
+                    return false;
+                }
+                if(index.equals("}"))
+                {
+                    String top = stack.pop();
+                    if(!top.equals("{"))
+                    {
+                        return false;
+                    }
+                }
+                if(index.equals(")"))
+                {
+                    String top = stack.pop();
+                    if(!top.equals("("))
+                    {
+                        return false;
+                    }
+                }
+                if(index.equals("]"))
+                {
+                    String top = stack.pop();
+                    if(!top.equals("["))
+                    {
+                        return false;
+                    }
+                }
+            }
+            else
+            {
+                stack.push(index);
+            }
+
+        }
+        if(stack.size() > 0)
+        {
+            return false;
+        }
+        return true;
+    }
+
 //14. 最长公共前缀
     public String longestCommonPrefix(String[] strs) {
         if(strs.length == 0)
