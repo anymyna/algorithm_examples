@@ -92,7 +92,76 @@ public class MainActivity extends AppCompatActivity {
 
 //t.toLowerCase()
         Log.e(TAG," toLowerCase"+toLowerCase("Hello"));
+        List<String> str = letterCombinations("23");
+        Log.e(TAG," letterCombinations"+str.size());
+        Log.e(TAG," letterCombinations"+str.toString());
 
+    }
+
+//17. 电话号码的字母组合
+    public List<String> letterCombinations(String digits) {
+
+        List<String> result = new ArrayList<String>();
+        String temp = "";
+        backtrace(result,temp,digits,0);
+        return result;
+    }
+
+    public void backtrace(List<String> result,String temp,String digits,int index)
+    {
+        if(index < digits.length())
+        {
+            if(temp.length() == digits.length())
+            {
+                result.add(temp);
+            }
+            else
+            {
+                String num = ""+digits.charAt(index);
+                String let = getLetterForNumber(num);
+                for(int i=0;i<let.length();i++)
+                {
+                    temp += let.charAt(i);
+                    backtrace(result,temp,digits,++index);
+                    index--;
+                    temp = temp.substring(0,temp.length()-1);
+                }
+            }
+        }
+    }
+
+
+    public String getLetterForNumber(String str)
+    {
+        String letter = "";
+        switch(str)
+        {
+            case "2":
+                letter = "abc";
+                break;
+            case "3":
+                letter = "def";
+                break;
+            case "4":
+                letter = "ghi";
+                break;
+            case "5":
+                letter = "jkl";
+                break;
+            case "6":
+                letter = "mno";
+                break;
+            case "7":
+                letter = "pqrs";
+                break;
+            case "8":
+                letter = "tuv";
+                break;
+            case "9":
+                letter = "wxyz";
+                break;
+        }
+        return letter;
     }
 
 //20. 有效的括号
