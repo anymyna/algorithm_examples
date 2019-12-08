@@ -7,6 +7,7 @@ import android.text.TextUtils;
 import android.util.Log;
 
 import java.util.ArrayList;
+import java.util.Deque;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
@@ -87,15 +88,66 @@ public class MainActivity extends AppCompatActivity {
 //        vector.add("h");
 //        //Log.e(TAG," vector before "+vector.toString());
 //         reverse(vector,3);
-//        Log.e(TAG," vector after"+rotatedDigits(10));
-        HashSet<String> set = new HashSet<String>();
+        Log.e(TAG," simplifyPath"+simplifyPath("/home//foo/"));
 
-//t.toLowerCase()
-        Log.e(TAG," toLowerCase"+toLowerCase("Hello"));
-        List<String> str = letterCombinations("23");
-        Log.e(TAG," letterCombinations"+str.size());
-        Log.e(TAG," letterCombinations"+str.toString());
 
+    }
+
+
+    public String simplifyPath(String path) {
+        if(path.length() < 1)
+        {
+            return "/";
+        }
+
+        String dir[] = path.split("/");
+        LinkedList<String> stack = new LinkedList<>();
+        for(int i=0;i<dir.length;i++)
+        {
+            String val = dir[i];
+            if("..".equals(val))
+            {
+                if(stack.size() < 1)
+                {
+                    continue;
+                }
+                else
+                {
+                    stack.removeLast();
+                }
+            }
+            else if("".equals(val))
+            {
+                continue;
+            }
+            else if(".".equals(val))
+            {
+                continue;
+            }
+            else
+            {
+                stack.addLast(val);
+            }
+
+        }
+
+        if(stack.size() < 1)
+        {
+            return "/";
+        }
+        if(stack.size() == 1)
+        {
+            return "/"+stack.removeLast();
+        }
+
+        String v = "";
+
+        for(int i=0;i<stack.size();i++)
+        {
+            //v+="/"+stack.removeFirst();
+            v+="/"+stack.get(i);
+        }
+        return v;
     }
 
 //17. 电话号码的字母组合
