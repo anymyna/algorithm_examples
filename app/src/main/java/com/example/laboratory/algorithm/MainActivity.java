@@ -90,9 +90,78 @@ public class MainActivity extends AppCompatActivity {
 //         reverse(vector,3);
         Log.e(TAG," simplifyPath"+simplifyPath("/home//foo/"));
 
-
+        generateParenthesis(3);
     }
 
+//22. 括号生成
+    public List<String> generateParenthesis(int n) {
+
+        List<String> list = new ArrayList<String>();
+        backtrace(list,"",2*n);
+
+
+        List<String> temp = new ArrayList<String>();
+        for(int i=0;i<list.size();i++)
+        {
+            if(isValid(list.get(i)))
+            {
+                temp.add(list.get(i));
+            }
+        }
+        return temp;
+    }
+
+    public void backtrace(List<String> list,String current,int size)
+    {
+        if(current.length() == size)
+        {
+            list.add(current);
+        }
+        else  if(current.length() < size)
+        {
+            current += "(";
+            backtrace(list,current,size);
+            current = current.substring(0,current.length()-1);
+            current += ")";
+            backtrace(list,current,size);
+        }
+    }
+
+    public boolean isValid(String str)
+    {
+        Stack<String> stack = new Stack<String>();
+
+        for(int i=0;i<str.length();i++)
+        {
+            if(stack.size() == 0)
+            {
+                if(")".equals(""+str.charAt(i)))
+                {
+                    return false;
+                }
+                stack.push(""+str.charAt(i));
+            }
+            else if("(".equals(""+str.charAt(i)))
+            {
+                stack.push(""+str.charAt(i));
+            }
+            else if(")".equals(""+str.charAt(i)))
+            {
+                String value = stack.pop();
+                if(")".equals(value))
+                {
+                    return false;
+                }
+            }
+        }
+
+        if(stack.size() != 0)
+        {
+            return false;
+        }
+
+        return true;
+    }
 
     public String simplifyPath(String path) {
         if(path.length() < 1)
@@ -217,58 +286,58 @@ public class MainActivity extends AppCompatActivity {
     }
 
 //20. 有效的括号
-    public boolean isValid(String s) {
-        if(s.length() < 1)
-        {
-            return true;
-        }
-        Stack<String> stack = new Stack<String>();
-        for(int i=0;i<s.length();i++)
-        {
-            String index = ""+s.charAt(i);
-            if(index.equals("}") ||index.equals(")") || index.equals("]") )
-            {
-                if(stack.size() < 1)
-                {
-                    return false;
-                }
-                if(index.equals("}"))
-                {
-                    String top = stack.pop();
-                    if(!top.equals("{"))
-                    {
-                        return false;
-                    }
-                }
-                if(index.equals(")"))
-                {
-                    String top = stack.pop();
-                    if(!top.equals("("))
-                    {
-                        return false;
-                    }
-                }
-                if(index.equals("]"))
-                {
-                    String top = stack.pop();
-                    if(!top.equals("["))
-                    {
-                        return false;
-                    }
-                }
-            }
-            else
-            {
-                stack.push(index);
-            }
-
-        }
-        if(stack.size() > 0)
-        {
-            return false;
-        }
-        return true;
-    }
+//    public boolean isValid(String s) {
+//        if(s.length() < 1)
+//        {
+//            return true;
+//        }
+//        Stack<String> stack = new Stack<String>();
+//        for(int i=0;i<s.length();i++)
+//        {
+//            String index = ""+s.charAt(i);
+//            if(index.equals("}") ||index.equals(")") || index.equals("]") )
+//            {
+//                if(stack.size() < 1)
+//                {
+//                    return false;
+//                }
+//                if(index.equals("}"))
+//                {
+//                    String top = stack.pop();
+//                    if(!top.equals("{"))
+//                    {
+//                        return false;
+//                    }
+//                }
+//                if(index.equals(")"))
+//                {
+//                    String top = stack.pop();
+//                    if(!top.equals("("))
+//                    {
+//                        return false;
+//                    }
+//                }
+//                if(index.equals("]"))
+//                {
+//                    String top = stack.pop();
+//                    if(!top.equals("["))
+//                    {
+//                        return false;
+//                    }
+//                }
+//            }
+//            else
+//            {
+//                stack.push(index);
+//            }
+//
+//        }
+//        if(stack.size() > 0)
+//        {
+//            return false;
+//        }
+//        return true;
+//    }
 
 //14. 最长公共前缀
     public String longestCommonPrefix(String[] strs) {
