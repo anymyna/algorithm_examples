@@ -23,74 +23,36 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //int value·[] = new int[2];
-        //value.length
-        int max = Integer.MIN_VALUE;
-
-        //.out.println("->->"+(josephus(41,3)+1));
-        //System.out.println("->->"+(josephus3(41,3)));
-
-        convert("PAYPALISHIRING",3);
-
-        char s = 'c';
-
-
-//        TextUtils.isEmpty()
-//        Character.isLowerCase(s);
-//        Character.isDigit()
-//        Character.isAlphabetic()
-//        Character.toLowerCase();
-//        Character.toUpperCase()
-//
-
-
-                String t= "";
-        //t.replace()
-//        t.toLowerCase();
-//        t.length();
-//        t = t.substring(0,t.length()-1);
-//        t.contains()
-
-
-
-//        t.equals()
-        //49. 两个数组的交集
-//        int[] nums1 = new int[3];
-//        nums1[0] = 4;
-//        nums1[1] =9;
-//        nums1[2] = 5;
-//        int[] nums2 = new int[5];
-//        nums2[0] = 9;
-//        nums2[1] =4;
-//        nums2[2] = 9;
-//        nums2[3] = 8;
-//        nums2[4] = 4;
-//        int arr [] = intersection(nums1,nums2);
-//        for(int i= 0 ;i<arr.length;i++)
-//        {
-//            Log.e(Tag,""+arr[i]);
-//        }
-
-        int arr [][] = {{1,4,7,11,15},{2,5,8,12,19},{3,6,9,16,22},{10,13,14,17,24},{18,21,23,26,30}};//20
-        //int arr [][] = {{1,2,3,4,5},{6,7,8,9,10},{11,12,13,14,15},{16,17,18,19,20},{21,22,23,24,25}};//15
-//        int arr [][] = {{1,4},{2,5}};//2
-        //Log.e(TAG," "+searchMatrix(arr,20));
-
-
-//        Vector<String> vector = new Vector<>();
-//        vector.add("a");
-//        vector.add("b");
-//        vector.add("c");
-//        vector.add("f");
-//        vector.add("e");
-//        vector.add("f");
-//        vector.add("g");
-//        vector.add("h");
-//        //Log.e(TAG," vector before "+vector.toString());
-//         reverse(vector,3);
         Log.e(TAG," simplifyPath"+simplifyPath("/home//foo/"));
 
-        generateParenthesis(3);
+    }
+    //28. 实现 strStr()
+    public int strStr(String haystack, String needle) {
+        if(needle == null || needle.length() < 1)
+        {
+            return 0;
+        }
+
+        if(haystack == null || haystack.length() < 1)
+        {
+            return -1;
+        }
+
+        if(haystack.length() < needle.length())
+        {
+            return -1;
+        }
+        int index = haystack.length() - needle.length();
+
+        for(int i=0;i<=index;i++)
+        {
+            String temp = haystack.substring(i,i+needle.length());
+            if(temp.equals(needle))
+            {
+                return i;
+            }
+        }
+        return -1;
     }
 
 //22. 括号生成
