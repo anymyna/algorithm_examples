@@ -23,9 +23,51 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Log.e(TAG," simplifyPath"+simplifyPath("/home//foo/"));
+        Log.e(TAG," isPalindrome  "+isPalindrome("A man, a plan, a canal: Panama"));
 
     }
+
+    //25. 验证回文串
+    public boolean isPalindrome(String s) {
+        if(s == null|| s.length() < 1)
+        {
+            return true;
+        }
+
+        int i = 0;
+        int j = s.length()-1;
+        s = s.toUpperCase();
+        while(i < j)
+        {
+
+            //while(Character.isWhitespace(s.charAt(i)))
+            while(i < j && !Character.isLetterOrDigit(s.charAt(i)))
+            {
+                i++;
+            }
+            while(j > i && !Character.isLetterOrDigit(s.charAt(j)))
+            {
+                j--;
+            }
+            if(i < j)
+            {
+                if(s.charAt(i) - s.charAt(j) != 0)
+                {
+                    return false;
+                }
+                i++;
+                j--;
+
+            }
+            else
+            {
+                return true;
+            }
+        }
+        return true;
+
+    }
+
     //28. 实现 strStr()
     public int strStr(String haystack, String needle) {
         if(needle == null || needle.length() < 1)
@@ -54,6 +96,8 @@ public class MainActivity extends AppCompatActivity {
         }
         return -1;
     }
+
+
 
 //22. 括号生成
     public List<String> generateParenthesis(int n) {
