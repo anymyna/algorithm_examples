@@ -2,6 +2,7 @@ package com.example.laboratory.algorithm;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.nfc.Tag;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -23,9 +24,115 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Log.e(TAG," isPalindrome  "+isPalindrome("A man, a plan, a canal: Panama"));
+
+
 
     }
+
+    //Log.e(TAG," addBinary  "+addBinary("1010","1011"));
+    //Log.e(TAG," addBinary  "+addBinary("0","0"));
+    //67. 二进制求和
+    public String addBinary(String a, String b) {
+        int len = a.length();
+        int len2 = b.length();
+
+        int large = len;
+        if(len2 > len)
+        {
+            large = len2;
+        }
+
+        boolean plus = false;
+        String value = "";
+        String x = "0";
+        String y = "0";
+        for(int j=0;j<large;j++)
+        {
+            if(j < len)
+            {
+                x = ""+a.charAt(len-1-j);
+            }
+            else
+            {
+                x = "0";
+            }
+            if(j < len2)
+            {
+                y = ""+b.charAt(len2-j-1);
+            }
+            else
+            {
+                y = "0";
+            }
+
+            if(plus)
+            {
+                if(x.equals("0"))
+                {
+                    if(y.equals("0"))
+                    {
+                        value +="1";
+                        plus = false;
+                    }
+                    else
+                    {
+                        value +="0";
+                    }
+                }
+                else
+                {
+                    if(y.equals("0"))
+                    {
+                        value +="0";
+                    }
+                    else
+                    {
+                        value +="1";
+                    }
+                }
+            }
+            else
+            {
+                if(x.equals("0"))
+                {
+                    if(y.equals("0"))
+                    {
+                        value +="0";
+                    }
+                    else
+                    {
+                        value +="1";
+                    }
+                }
+                else
+                {
+                    if(y.equals("0"))
+                    {
+                        value +="1";
+                    }
+                    else
+                    {
+                        value +="0";
+                        plus = true;
+                    }
+                }
+            }
+
+
+        }
+
+        if(plus)
+        {
+            value +="1";
+        }
+        String s = "";
+        for(int k=value.length()-1;k>=0;k--)
+        {
+            s+=value.charAt(k);
+        }
+        return s;
+    }
+
 
     //344. 反转字符串
     public void reverseString(char[] s) {
