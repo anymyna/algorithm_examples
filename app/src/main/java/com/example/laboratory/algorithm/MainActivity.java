@@ -27,6 +27,19 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    //344. 反转字符串
+    public void reverseString(char[] s) {
+
+        char temp = ' ';
+        int limit = s.length/2;
+        for(int i=0;i<limit;i++)
+        {
+            temp = s[i];
+            s[i] = s[s.length-1-i];
+            s[s.length-1-i] = temp;
+        }
+    }
+
     //25. 验证回文串
     public boolean isPalindrome(String s) {
         if(s == null|| s.length() < 1)
