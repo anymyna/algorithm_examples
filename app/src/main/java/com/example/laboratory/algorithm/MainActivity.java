@@ -9,9 +9,11 @@ import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.Deque;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.Stack;
 import java.util.Vector;
 
@@ -25,8 +27,54 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        Log.e(TAG," canConstruct  "+canConstruct("aa","ab"));
 
 
+    }
+
+    //383. 赎金信
+    public boolean canConstruct(String ransomNote, String magazine) {
+
+        if(ransomNote == null || ransomNote.length()<1)
+        {
+            return true;
+        }
+        Map<String,Integer> map = new HashMap<String,Integer>();
+        for(int i=0;i<magazine.length();i++)
+        {
+            if(map.containsKey(""+magazine.charAt(i)))
+            {
+                int temp = map.get(""+magazine.charAt(i))+1;
+                map.put(""+magazine.charAt(i),temp);
+            }
+            else
+            {
+                map.put(""+magazine.charAt(i),1);
+            }
+
+        }
+
+        for(int j=0;j<ransomNote.length();j++)
+        {
+            if(!map.containsKey(""+ransomNote.charAt(j)))
+            {
+                return false;
+            }
+            else
+            {
+                int temp = map.get(""+ransomNote.charAt(j));
+                if(temp < 1)
+                {
+                    return false;
+                }
+                else
+                {
+                    temp--;
+                    map.put(""+ransomNote.charAt(j),temp);
+                }
+            }
+        }
+        return true;
     }
 
     //Log.e(TAG," addBinary  "+addBinary("1010","1011"));
