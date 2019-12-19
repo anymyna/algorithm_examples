@@ -30,8 +30,65 @@ public class MainActivity extends AppCompatActivity {
         Log.e(TAG," canConstruct  "+canConstruct("aa","ab"));
 
 
+
+
+
     }
 
+    //1189. “气球” 的最大数量
+    public int maxNumberOfBalloons(String text) {
+        int arr[] = new int[5];
+        for(int i=0;i<text.length();i++)
+        {
+            String t =""+text.charAt(i);
+            if(t.equals("a"))
+            {
+                arr[0]++;
+            }
+            if(t.equals("b"))
+            {
+                arr[1]++;
+            }
+            if(t.equals("n"))
+            {
+                arr[2]++;
+            }
+            if(t.equals("l"))
+            {
+                arr[3]++;
+            }
+            if(t.equals("o"))
+            {
+                arr[4]++;
+            }
+        }
+
+        int low = arr[0];
+        if(arr[1] < arr[0])
+        {
+            low = arr[1];
+        }
+        if(arr[2] < low)
+        {
+            low = arr[2];
+        }
+
+        int two = arr[3];
+        if(arr[4]< two)
+        {
+            two = arr[4];
+        }
+
+        two = two/2;
+        if(two < low)
+        {
+            return two;
+        }
+        return low;
+
+    }
+
+    //Log.e(TAG," canConstruct  "+canConstruct("aa","ab"));
     //383. 赎金信
     public boolean canConstruct(String ransomNote, String magazine) {
 
