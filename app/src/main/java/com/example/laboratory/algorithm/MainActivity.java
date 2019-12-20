@@ -34,6 +34,49 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+    //520. 检测大写字母
+    public boolean detectCapitalUse(String word) {
+        if(word.charAt(0) -'Z'<=0)
+        {
+            if(word.length() < 2)
+            {
+                return true;
+            }
+
+            if(word.charAt(1)-'Z'>0)
+            {
+                for(int i=2;i<word.length();i++)
+                {
+                    if(word.charAt(i)-'Z'<=0)
+                    {
+                        return false;
+                    }
+                }
+            }
+            else
+            {
+                for(int i=2;i< word.length();i++)
+                {
+                    if(word.charAt(i)-'Z'>0)
+                    {
+                        return false;
+                    }
+                }
+            }
+
+        }
+        else
+        {
+            for(int i=1;i<word.length();i++)
+            {
+                if(word.charAt(i)-'Z'<=0)
+                {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
 
     //1189. “气球” 的最大数量
     public int maxNumberOfBalloons(String text) {
