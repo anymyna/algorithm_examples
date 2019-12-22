@@ -36,6 +36,48 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    //58. 最后一个单词的长度
+    public int lengthOfLastWord(String s) {
+        if(s.length() < 1)
+        {
+            return 0;
+        }
+        if(s.length() < 2 && s.charAt(0) -' ' == 0)
+        {
+            return 0;
+        }
+        if(s.length() < 2)
+        {
+            return 1;
+        }
+        int end = s.length()-1;
+        while( end >= 0 && s.charAt(end) -' ' == 0)
+        {
+            end--;
+        }
+
+        if(end < 0)
+        {
+            return 0;
+        }
+
+        int start = end;
+        while(start >= 0 && s.charAt(start) -' ' != 0)
+        {
+            start--;
+        }
+
+        if(start < 0)
+        {
+            return end - 0 + 1;
+        }
+        else
+        {
+            return end - start;
+        }
+
+    }
+
     //557. 反转字符串中的单词 III
     public String reverseWords(String s) {
 
