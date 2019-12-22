@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.Deque;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -34,6 +35,36 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
+    //557. 反转字符串中的单词 III
+    public String reverseWords(String s) {
+
+        StringBuilder val = new StringBuilder();
+        int start = 0;
+        for(int i=0;i<s.length();i++)
+        {
+            if(s.charAt(i)-' ' == 0)
+            {
+
+                for(int j = i-1;j>=start;j--)
+                {
+                    val.append(""+s.charAt(j));
+                }
+                val.append(" ");
+                start = i+1;
+            }
+            if( i == s.length()-1)
+            {
+                for(int j = i;j>=start;j--)
+                {
+                    val.append(""+s.charAt(j));
+                }
+            }
+        }
+        return val.toString();
+
+    }
+
     //520. 检测大写字母
     public boolean detectCapitalUse(String word) {
         if(word.charAt(0) -'Z'<=0)
