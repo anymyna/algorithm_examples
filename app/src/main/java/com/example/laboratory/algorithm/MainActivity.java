@@ -38,6 +38,28 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+//136. 只出现一次的数字
+    public int singleNumber(int[] nums) {
+        HashSet<Integer> set = new HashSet<Integer>();
+        for(int i=0;i<nums.length;i++)
+        {
+            if(set.contains(nums[i]))
+            {
+                set.remove(nums[i]);
+            }
+            else
+            {
+                set.add(nums[i]);
+            }
+        }
+        Iterator<Integer> it = set.iterator();
+        while (it.hasNext()) {
+            int v = it.next();
+            return v;
+        }
+        return 0;
+    }
+
 //1221. 分割平衡字符串
     public int balancedStringSplit(String s) {
         int count = 0;
