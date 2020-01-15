@@ -37,6 +37,49 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+//202. 快乐数
+    public boolean isHappy(int n) {
+
+        if(1 == n)
+        {
+            return true;
+        }
+        if(n < 0)
+        {
+            return false;
+        }
+        HashSet<Integer> set = new HashSet<Integer>();
+
+        int target = n;
+        while (judge(n) != 1 && !set.contains(n))
+        {
+            set.add(n);
+            n = judge(n);
+        }
+
+        if(judge(n) == 1)
+        {
+            return true;
+        }
+        else if(set.contains(n))
+        {
+            return false;
+        }
+        return true;
+    }
+
+
+    public int judge(int x)
+    {
+        int count = 0;
+        while(x > 0)
+        {
+            int v = x % 10;
+            count += v * v;
+            x = x / 10;
+        }
+        return count;
+    }
 
 //136. 只出现一次的数字
     public int singleNumber(int[] nums) {
