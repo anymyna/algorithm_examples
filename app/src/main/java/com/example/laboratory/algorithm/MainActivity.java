@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
         Log.e(TAG," onCreate");
 
 
-
+        Heap.test();
 
 
 
