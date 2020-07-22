@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.nfc.Tag;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.TextUtils;
 import android.util.Log;
 
@@ -29,14 +30,33 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
+         Handler mHandler = new Handler(); // define handler
+
+        mHandler.postDelayed(new Runnable(){
+            @Override
+            public void run() {
+                Log.e(TAG," mHandler test");
+            }
+        }, 3000); // start execute
+
         Log.e(TAG," onCreate");
 
-
-        Heap.test();
-
+//        mHandler.removeCallbacks(delayExecuteRunnable); //cancel execute
 
 
-    }
+        //Heap.test();
+
+
+
+}
+
+
+
+
+
+
+
 //202. 快乐数
     public boolean isHappy(int n) {
 
@@ -1630,6 +1650,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //53. 最大子序和
+
+
     public int maxSubArray(int[] nums) {
 
         if(nums.length < 1)
@@ -1637,36 +1659,70 @@ public class MainActivity extends AppCompatActivity {
             return -1;
         }
 
-        int max = Integer.MIN_VALUE;
-        int current = Integer.MIN_VALUE;
+        int max = nums[0];
+        int current = nums[0];
 
-        for(int i=0;i<nums.length;i++)
+        for(int i=1;i<nums.length;i++)
         {
-            for(int j=i;j<nums.length;j++)
+            if(current + nums[i] > max)
             {
-                if(j == i)
-                {
-                    current = nums[i];
-
-                    if(current > max )
-                    {
-                        max = current;
-                    }
-                }
-                else
-                {
-                    current = current + nums[j];
-                    if(current > max )
-                    {
-                        max = current;
-                    }
-                }
-
+                max = current + nums[i];
+            }
+            if(nums[i] > max)
+            {
+                max = nums[i];
+            }
+            if(current + nums[i] > nums[i])
+            {
+                current = current + nums[i];
+            }
+            else
+            {
+                current = nums[i];
             }
         }
 
         return max;
     }
+
+
+//    public int maxSubArray(int[] nums) {
+//
+//        if(nums.length < 1)
+//        {
+//            return -1;
+//        }
+//
+//        int max = Integer.MIN_VALUE;
+//        int current = Integer.MIN_VALUE;
+//
+//        for(int i=0;i<nums.length;i++)
+//        {
+//            for(int j=i;j<nums.length;j++)
+//            {
+//                if(j == i)
+//                {
+//                    current = nums[i];
+//
+//                    if(current > max )
+//                    {
+//                        max = current;
+//                    }
+//                }
+//                else
+//                {
+//                    current = current + nums[j];
+//                    if(current > max )
+//                    {
+//                        max = current;
+//                    }
+//                }
+//
+//            }
+//        }
+//
+//        return max;
+//    }
 
     //6. Z 字形变换          convert("PAYPALISHIRING",3);
     public String convert(String s, int numRows) {
