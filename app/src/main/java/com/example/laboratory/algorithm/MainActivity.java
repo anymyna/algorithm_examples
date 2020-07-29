@@ -47,6 +47,13 @@ public class MainActivity extends AppCompatActivity {
 
         //Heap.test();
 
+        //String s =   "cbbd";
+//        String s =   "aaaa";
+        String s =   "babad";
+
+        Log.e(TAG," val " + longestPalindrome(s));
+
+
 
 
 }
@@ -54,7 +61,60 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+    public String longestPalindrome(String s) {
+        int size = s.length();
+        boolean flag[][] = new boolean[size][size];
 
+        if(size < 2)
+        {
+            return s;
+        }
+        String val = s.substring(0,1);
+
+        for(int i = 0;i< size ;i++)
+        {
+            flag[i][i] = true;
+        }
+
+
+        for(int i = size-1;i>=0 ;i--)
+        {
+            for(int j = size-1;j>=i;j--)
+            {
+                if(j == i)
+                {
+                    flag[i][j] = true;
+
+                }
+                else if(j == i+1)
+                {
+                    if(s.charAt(j)-s.charAt(i) == 0)
+                    {
+                        flag[i][j] = true;
+                        if(s.substring(i,j+1).length() >  val.length())
+                        {
+                            val = s.substring(i,j+1);
+                        }
+                    }
+                }
+                else
+                {
+                    if(i+1<size  && flag[i+1][j-1] == true && s.charAt(j)-s.charAt(i) == 0 )
+                    {
+                        flag[i][j] = true;
+
+                        if(s.substring(i,j+1).length() >  val.length())
+                        {
+                            val = s.substring(i,j+1);
+                        }
+                    }
+                }
+
+            }
+        }
+        return val;
+
+    }
 
 
 //202. 快乐数
@@ -1684,6 +1744,7 @@ public class MainActivity extends AppCompatActivity {
 
         return max;
     }
+
 
 
 //    public int maxSubArray(int[] nums) {
