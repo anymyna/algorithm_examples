@@ -20,7 +20,7 @@ public class AlternativePrint {
         new Thread("A"){
             @Override
             public void run() {
-                for (int i= 0; i < 20; i++)
+                for (int i= 0; i < 5; i++)
                     loopA();
             }
         }.start();
@@ -28,7 +28,7 @@ public class AlternativePrint {
         new Thread("B"){
             @Override
             public void run() {
-                for (int i= 0; i < 20; i++)
+                for (int i= 0; i < 5; i++)
                     loopB();
             }
         }.start();
@@ -36,7 +36,7 @@ public class AlternativePrint {
         new Thread("C"){
             @Override
             public void run() {
-                for (int i= 0; i < 20; i++)
+                for (int i= 0; i < 5; i++)
                     loopC();
             }
         }.start();

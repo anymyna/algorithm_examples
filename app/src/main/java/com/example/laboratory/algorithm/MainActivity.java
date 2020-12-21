@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.nfc.Tag;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.os.Handler;
 import android.text.TextUtils;
 import android.util.Log;
@@ -19,10 +20,19 @@ import java.util.List;
 import java.util.Map;
 import java.util.Stack;
 import java.util.Vector;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.CyclicBarrier;
+import java.util.concurrent.locks.Condition;
+import java.util.concurrent.locks.ReentrantLock;
+
 
 public class MainActivity extends AppCompatActivity {
 
     private String TAG = "duck";
+
+
+
+
 
 
     @Override
@@ -30,33 +40,16 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
-         Handler mHandler = new Handler(); // define handler
-
-        mHandler.postDelayed(new Runnable(){
-            @Override
-            public void run() {
-                Log.e(TAG," mHandler test");
-            }
-        }, 3000); // start execute
-
-        Log.e(TAG," onCreate");
-
-//        mHandler.removeCallbacks(delayExecuteRunnable); //cancel execute
+        new FooBar().test(5);
 
 
-        //Heap.test();
-
-        //String s =   "cbbd";
-//        String s =   "aaaa";
-        String s =   "babad";
-
-        Log.e(TAG," val " + longestPalindrome(s));
+    }
 
 
 
 
-}
+
+
 
 
 
