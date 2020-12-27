@@ -2,28 +2,18 @@ package com.example.laboratory.algorithm;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.nfc.Tag;
 import android.os.Bundle;
-import android.os.CountDownTimer;
-import android.os.Handler;
-import android.text.TextUtils;
 import android.util.Log;
-
 import java.util.ArrayList;
-import java.util.Deque;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
-import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Stack;
 import java.util.Vector;
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.CyclicBarrier;
-import java.util.concurrent.locks.Condition;
-import java.util.concurrent.locks.ReentrantLock;
+
 
 
 public class MainActivity extends AppCompatActivity {
@@ -40,13 +30,42 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        new FooBar().test(5);
 
+        boolean value = isIsomorphic("ab","aa");
+        Log.d(TAG," 11  value "+ value);
 
     }
 
 
+    //205. 同构字符串
+    public boolean isIsomorphic(String s, String t) {
 
+        HashMap<String, String>  map = new HashMap<>();
+        for(int i=0;i< s.length();i++)
+        {
+            String first = ""+s.charAt(i);
+            String second = ""+t.charAt(i);
+            if(map.containsKey(first))
+            {
+                if(!map.get(first).equals(second))
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                if(map.containsValue(second))
+                {
+                    return false;
+                }
+                else
+                {
+                    map.put(first,second);
+                }
+            }
+        }
+        return true;
+    }
 
     //746. 使用最小花费爬楼梯
     public int minCostClimbingStairs(int[] cost) {
