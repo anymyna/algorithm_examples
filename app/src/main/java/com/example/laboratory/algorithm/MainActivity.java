@@ -31,11 +31,61 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-        boolean value = isIsomorphic("ab","aa");
+        boolean value = isPalindrome(1234567899);
         Log.d(TAG," 11  value "+ value);
 
     }
 
+
+    // 104. 二叉树的最大深度
+    public int depth(TreeNode root)
+    {
+        if(root == null)
+        {
+            return 0;
+        }
+
+        int left = 1 + depth(root.left);
+        int right = 1 + depth(root.right);
+
+        if(left > right)
+        {
+            return left;
+        }
+
+        return right;
+    }
+
+    //205. 回文数  10 121
+    boolean isPalindrome(int x) {
+
+        if ( x < 0)
+        {
+            return false;
+        }
+
+        int temp = 0;
+        int base = x;
+        while( x >= 10)
+        {
+            temp = temp * 10 + x %10;
+            x = x / 10;
+        }
+        if(temp > Integer.MAX_VALUE/10)
+        {
+            temp = temp * 10 + x;
+        }
+        else
+        {
+            return false;
+        }
+
+        if(temp == base)
+        {
+            return true;
+        }
+        return false;
+    }
 
     //205. 同构字符串
     public boolean isIsomorphic(String s, String t) {
